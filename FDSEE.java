@@ -2,19 +2,38 @@ import java.io.*;
 import java.util.*;
 
 public class FDSEE {
-    // isSearchable()
 
-    public enum SETF {
+    public enum FileType {
         HTML,
-        HTM,
-        TXT,
-        CC,
-        CPP,
-        C,
-        H,
-        JAVA
+        TEXT
     }
+    
+    public static FileType getFileType(String filename){
+        
+        filename = filename.replaceFirst("[a-zA-Z0-9$/_]*.", "");
+       
+        FileType filetype = null;
 
+        switch(filename){
+            case "html":
+            case "htm":
+                filetype = FileType.HTML;
+                break;
+            case "txt":
+            case "cc":
+            case "cpp":
+            case "java":
+            case "c":
+            case "h":
+                filetype = FileType.TEXT;
+                break;
+            default:
+                break;
+        }
+
+        return filetype;
+    }
+    
     public static void isSearchable(String filename){
         
         File file = new File(filename);
@@ -22,10 +41,24 @@ public class FDSEE {
         boolean isFileExists = fileExists(file);
 
         if(isFileExists){
-            System.out.println("File exists");
-        } else {
-            System.out.println("File doesn't exist");
+            
+            boolean isFile = file.isFile();
+            boolean isDirectory = file.isDirectory();
+
+            if(isFile){
+                
+                FileType filetype = getFileType(filename);
+                
+                if(filetype != null){
+                    System.out.println(file + "\t" + filetype);
+                }
+
+            } else if(isDirectory){
+
+            }
         }
+
+        System.out.println("END-OF-LISTING");
     }
 
     public static boolean fileExists(File f){
@@ -51,7 +84,7 @@ public class FDSEE {
             String type = args[0];
             
             String filename = args[1];
-
+            
             switch(type){
                 case "searchable":
                     isSearchable(filename);
@@ -64,4 +97,5 @@ public class FDSEE {
             ex.printStackTrace();
         }
     }
+
 }
