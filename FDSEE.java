@@ -1,13 +1,12 @@
 import java.io.*;
+import java.io.*;
 import java.util.*;
+
 
 public class FDSEE {
 
-    public enum FileType {
-        HTML,
-        TEXT
-    }
-    
+    public static PrintWriter writer;
+
     public static FileType getFileType(String filename){
         
         filename = filename.replaceFirst("[a-zA-Z0-9$/_]*.", "");
@@ -33,6 +32,21 @@ public class FDSEE {
 
         return filetype;
     }
+   
+    public static void listfiles(String directoryName, ArrayList<File> files) {
+        File directory = new File(directoryName);
+
+        // get all the files from a directory
+        File[] fList = directory.listFiles();
+
+        for (File file : fList) {
+            if (file.isFile()) {
+                files.add(file);
+            } else if (file.isDirectory()) {
+                listfiles(file.toString(), files);
+            }
+        }
+    } 
     
     public static void isSearchable(String filename){
         
@@ -50,15 +64,26 @@ public class FDSEE {
                 FileType filetype = getFileType(filename);
                 
                 if(filetype != null){
-                    System.out.println(file + "\t" + filetype);
+                    writer.println(file + "\t" + filetype);
                 }
 
             } else if(isDirectory){
-
+               
+                ArrayList<File> files = new ArrayList<File>();
+                
+                listfiles(filename, files);
+               
+                for(File f: files){
+                    
+                    FileType filetype = getFileType(f.toString());
+                    
+                    if(filetype != null)
+                        writer.println(f + "\t" + filetype);
+                }
             }
         }
 
-        System.out.println("END-OF-LISTING");
+        writer.println("END-OF-LISTING");
     }
 
     public static boolean fileExists(File f){
@@ -81,18 +106,37 @@ public class FDSEE {
                 System.exit(1);
             }
 
-            String type = args[0];
-            
+            String action = args[0];
             String filename = args[1];
-            
-            switch(type){
+
+            String output;            
+           
+            switch(action){
                 case "searchable":
+                    
+                    output = "FDSEE_searchable.txt";
+                    writer = new PrintWriter(output, "UTF-8");
+                    
                     isSearchable(filename);
+                    writer.close();
+                    
+                    break;
+                case "token":
+                   
+                    output = "FDSEE_searchable.txt";
+                    writer = new PrintWriter(output, "UTF-8");
+                    
+                    isSearchable(filename);
+                   
+                    writer.close();
+                    
+                    new htmlParser("FDSEE.java");
+                    
                     break;
                 default:
                     break;
             }
-
+    
         } catch (Exception ex){
             ex.printStackTrace();
         }
