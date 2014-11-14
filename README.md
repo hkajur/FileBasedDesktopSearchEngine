@@ -4,6 +4,8 @@
 
 Compilation
 
+Run the following command to compile the program
+
 ```
 javac FDSEE.java FileInfo.java enums.java htmlParser.java
 ```
@@ -11,6 +13,9 @@ javac FDSEE.java FileInfo.java enums.java htmlParser.java
 Running the program
 
 ### Searching files for the readable files
+
+Execute the following two commands to test the program
+Note: Make sure to replace filename with your filename and directory with a directory
 
 ```
 java FDSEE searchable filename
