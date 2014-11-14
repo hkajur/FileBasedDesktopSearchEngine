@@ -10,11 +10,20 @@ public class parser {
      Scanner scanner = new Scanner(file);
 
      while (scanner.hasNext()) {
-        System.out.println(scanner.next().replaceAll("[.,<>]", "").toLowerCase());
+        String s = scanner.next().replaceAll("[^A-Za-z0-9]", " ").toLowerCase();
+
+        s = s.replaceAll("[ ][ ]*", " ");
+        s = s.replaceAll("^[ ]*", "");
+
+        String[] strArray = s.split(" ");
+
+        for(String str : strArray)
+          if(!str.isEmpty() && str.trim().length() > 0)
+            System.out.println(str);
      }
      scanner.close();
    } catch (FileNotFoundException e) {
-     e.printStackTrace();
+     e.printStackTrace(); //Prints errors if file not found
    }
  }
 
