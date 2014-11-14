@@ -34,6 +34,9 @@ Which has all the files that are readable in the directory or if the file is rea
 java FDSEE token filename
 ```
 
+I have it set so it can only accept TEXT files not HTML files
+Need to work on that later
+
 Currently, I have it so it runs the searchable each time even if you run the action token
 I will have to fix that for later. But for now, it will output the string to standard output
 like this: 
