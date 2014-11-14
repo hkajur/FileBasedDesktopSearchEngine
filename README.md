@@ -25,7 +25,7 @@ java FDSEE searchable filename
 java FDSEE searchable directory
 ```
 
-Running the previous command will leave you with a file called FDSEE_searchable.txt file
+Running one of the previous two commands will leave you with a file called FDSEE_searchable.txt file
 Which has all the files that are readable in the directory or if the file is readable
 
 ### Tokenizing the readable files
