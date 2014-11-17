@@ -1,9 +1,9 @@
 import java.io.*;
-import java.io.*;
 import java.util.*;
 
-
 public class FDSEE {
+
+    public static final String SEARCH_OUTPUT = "FDSEE_searchable.txt";
 
     public static PrintWriter writer;
 
@@ -33,18 +33,19 @@ public class FDSEE {
         return filetype;
     }
    
-    public static void listfiles(String directoryName, ArrayList<File> files) {
+    public static void listFiles(String directoryName, ArrayList<File> files) {
+
         File directory = new File(directoryName);
 
-        // get all the files from a directory
+        // Get all the files from a directory
         File[] fList = directory.listFiles();
 
-        for (File file : fList) {
-            if (file.isFile()) {
+        for (File file : fList){
+            if (file.isFile()) 
                 files.add(file);
-            } else if (file.isDirectory()) {
-                listfiles(file.toString(), files);
-            }
+            else if (file.isDirectory()) 
+                listFiles(file.toString(), files);
+        
         }
     } 
     
@@ -71,7 +72,7 @@ public class FDSEE {
                
                 ArrayList<File> files = new ArrayList<File>();
                 
-                listfiles(filename, files);
+                listFiles(filename, files);
                
                 for(File f: files){
                     
@@ -109,28 +110,35 @@ public class FDSEE {
             String action = args[0];
             String filename = args[1];
 
-            String output;            
-           
+            htmlParser parse;
+            
             switch(action){
+                
                 case "searchable":
-                    
-                    output = "FDSEE_searchable.txt";
-                    writer = new PrintWriter(output, "UTF-8");
+                    writer = new PrintWriter(SEARCH_OUTPUT, "UTF-8");
                     
                     isSearchable(filename);
                     writer.close();
                     
                     break;
+               
                 case "token":
                    
-                    output = "FDSEE_searchable.txt";
-                    writer = new PrintWriter(output, "UTF-8");
-                    
+                    writer = new PrintWriter(SEARCH_OUTPUT, "UTF-8");
                     isSearchable(filename);
-                   
                     writer.close();
                     
-                    new htmlParser("FDSEE.java");
+                    parse = new htmlParser(ParseTokenType.TOKEN);
+                    
+                    break;
+                
+                case "tokendebug":
+
+                    writer = new PrintWriter(SEARCH_OUTPUT, "UTF-8");
+                    isSearchable(filename);
+                    writer.close();
+                    
+                    parse = new htmlParser(ParseTokenType.TOKENDEBUG);
                     
                     break;
                 default:
