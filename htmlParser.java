@@ -5,6 +5,8 @@ class htmlParser {
  
     private File file;
     private BufferedReader br;
+    private PrintWriter writer;
+
     private List<FileInfo> fileinfoList;
 
     private int attr;
@@ -23,6 +25,12 @@ class htmlParser {
             this.ttype = ttype;
 
             fileinfoList = new ArrayList<FileInfo>();
+            
+            if(ttype == ParseTokenType.TOKEN)
+                writer = new PrintWriter("fdsee_token.txt", "UTF8");
+            else 
+                writer = new PrintWriter("fdsee_tokendebug.txt", "UTF8");
+
             wordList = new ArrayList<String>();
 
             getFileInformation();
@@ -126,10 +134,14 @@ class htmlParser {
     public void print(String fname, StringBuffer str, TokenStatus ts, int n){
         switch(ttype){
             case TOKEN:
-                System.out.println("(" + docID + "," + wordID + "," + n + "," + getValueOfTokenStatus(ts) + ")");
+                writer.println("(" + docID + "," 
+                        + wordID + "," + n + "," 
+                        + getValueOfTokenStatus(ts) + ")");
                 break;
             case TOKENDEBUG:
-                System.out.println("(" + fname + "," + str + "," + n + "," + getTokenStatus(ts) + ")");
+                writer.println("(" + fname + "," 
+                        + str.toString().toLowerCase() + "," 
+                        + n + "," + getTokenStatus(ts) + ")");
                 break;
             default:
                 break;
@@ -287,8 +299,6 @@ class htmlParser {
                             else if(str.matches("h[4-6]"))
                                 ts = TokenStatus.INSIDE_H4_6;
 
-                            //System.out.println(str);
-
                             sbTagName = new StringBuffer();
 
                             tt = TokenType.OPEN_GREAT_SPACE;
@@ -305,8 +315,6 @@ class htmlParser {
                                 ts = TokenStatus.INSIDE_H1_3;
                             else if(str.matches("h[4-6]"))
                                 ts = TokenStatus.INSIDE_H4_6;
-
-                            //System.out.println(str);
 
                             sbTagName = new StringBuffer();
                             
@@ -373,13 +381,13 @@ class htmlParser {
                         switch(ttype){
 
                             case TOKEN:
-                                System.out.println("(" + docID + "," 
+                                writer.println("(" + docID + "," 
                                 + wordID + "," + wpos 
                                 + "," + attr + ")");
 
                                 break;
                             case TOKENDEBUG:
-                                System.out.println("(" + fname + "," 
+                                writer.println("(" + fname + "," 
                                 + str + "," + wpos 
                                 + "," + attr + ")");
 
@@ -467,5 +475,9 @@ class htmlParser {
         }
 
         return line;
+    }
+
+    public void closeWriter(){
+        writer.close();
     }
 }

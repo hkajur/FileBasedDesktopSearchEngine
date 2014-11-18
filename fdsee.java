@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.*;
+import java.nio.file.*;
 
-public class FDSEE {
+public class fdsee {
 
-    public static final String SEARCH_OUTPUT = "FDSEE_searchable.txt";
+    public static final String SEARCH_OUTPUT = "fdsee_searchable.txt";
 
     public static PrintWriter writer;
 
@@ -129,7 +130,7 @@ public class FDSEE {
                     writer.close();
                     
                     parse = new htmlParser(ParseTokenType.TOKEN);
-                    
+                    parse.closeWriter(); 
                     break;
                 
                 case "tokendebug":
@@ -139,8 +140,9 @@ public class FDSEE {
                     writer.close();
                     
                     parse = new htmlParser(ParseTokenType.TOKENDEBUG);
-                    
+                    parse.closeWriter(); 
                     break;
+                    
                 default:
                     break;
             }
