@@ -25,7 +25,7 @@ java fdsee searchable filename
 java fdsee searchable directory
 ```
 
-Running one of the previous two commands will leave you with a file called FDSEE_searchable.txt file
+Running one of the previous two commands will leave you with a file called fdsee_searchable.txt file
 Which has all the files that are readable in the directory or if the file is readable
 
 ### Tokenizing the readable files
@@ -33,6 +33,8 @@ Which has all the files that are readable in the directory or if the file is rea
 ```
 java fdsee token filename
 ```
+
+Output of this file is stored to a file named fdsee_token.txt
 
 Currently, I have it so it runs the searchable each time even if you run the action token
 I will have to fix that for later. But for now, it will output the string to standard output
@@ -50,7 +52,9 @@ Just added the token debug and token working
 java fdsee tokendebug filename
 ```
 
-I have it set so now it can only accept both TEXT and HTML files
+Output of this file is stored to a file named fdsee_tokendebug.txt
+
+I have it set so now it accept both TEXT and HTML files
 
 ```
 (docURL, wordName, wpos, attrValue)    
