@@ -1,3 +1,9 @@
+/*
+ * Harish Kajur
+ * Jonathan Lysiak 4477
+ *
+ */
+
 # CS 345 File Based Desktop Search Engine
 
 ## Usage

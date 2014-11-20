@@ -1,10 +1,17 @@
+/*
+ * Harish Kajur
+ * Jonathan Lysiak 4477
+ *
+ */
+
+
 import java.io.*;
 import java.util.*;
 import java.nio.file.*;
 
 public class fdsee {
 
-    public static final String SEARCH_OUTPUT = "fdsee_searchable.txt";
+    public static final String SEARCH_OUTPUT = "fdsee_doclist.txt";
 
     public static PrintWriter writer;
 

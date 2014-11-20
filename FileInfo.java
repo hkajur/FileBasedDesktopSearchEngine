@@ -1,3 +1,9 @@
+/*
+ * Harish Kajur
+ * Jonathan Lysiak 4477
+ *
+ */
+
 class FileInfo {
     
     private String filename;

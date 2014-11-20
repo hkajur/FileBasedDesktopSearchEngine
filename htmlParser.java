@@ -1,3 +1,10 @@
+/*
+ * Harish Kajur
+ * Jonathan Lysiak 4477
+ *
+ */
+
+
 import java.io.*;
 import java.util.*;
 
@@ -27,7 +34,7 @@ class htmlParser {
             fileinfoList = new ArrayList<FileInfo>();
             
             if(ttype == ParseTokenType.TOKEN)
-                writer = new PrintWriter("fdsee_token.txt", "UTF8");
+                writer = new PrintWriter("fdsee_lexicon.txt", "UTF8");
             else 
                 writer = new PrintWriter("fdsee_tokendebug.txt", "UTF8");
 
@@ -426,7 +433,7 @@ class htmlParser {
 
     public void getFileInformation() throws IOException{
       
-        String inputFile = "FDSEE_searchable.txt";
+        String inputFile = "FDSEE_doclist.txt";
 
         FileReader fr = new FileReader(inputFile);
         BufferedReader bRead = new BufferedReader(fr);

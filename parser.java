@@ -1,3 +1,9 @@
+/*
+ * Harish Kajur
+ * Jonathan Lysiak 4477
+ *
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

@@ -1,6 +1,10 @@
 /*
- * FileType enum
+ * Harish Kajur
+ * Jonathan Lysiak 4477
+ *
  */
+
+
 
 enum FileType {
     HTML,
