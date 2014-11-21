@@ -8,7 +8,8 @@
 
 enum FileType {
     HTML,
-    TEXT
+    TEXT,
+    NSTF
 }
 
 enum ParseTokenType {

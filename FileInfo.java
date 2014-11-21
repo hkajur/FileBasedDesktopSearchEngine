@@ -5,15 +5,17 @@
  */
 
 class FileInfo {
-    
+
+    private int docID;
     private String filename;
     private FileType filetype;
 
     public FileInfo(){}
 
-    public FileInfo(String filename,  FileType filetype){
+    public FileInfo(String filename,  FileType filetype, int docID){
         setFilename(filename);
         setFiletype(filetype);
+        setDocID(docID);
     }
 
     public FileType getFileType(){
@@ -22,6 +24,14 @@ class FileInfo {
     
     public String getFilename(){
         return filename;
+    }
+
+    public int getDocID(){
+        return docID;
+    }
+   
+    private void setDocID(int docID){
+        this.docID = docID;
     }
 
     private void setFilename(String filename){

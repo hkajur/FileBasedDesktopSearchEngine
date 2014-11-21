@@ -15,6 +15,8 @@ public class fdsee {
 
     public static PrintWriter writer;
 
+    public static int docID = 1;
+
     public static FileType getFileType(String filename){
         
         filename = filename.replaceFirst("[a-zA-Z0-9$/_]*.", "");
@@ -35,6 +37,7 @@ public class fdsee {
                 filetype = FileType.TEXT;
                 break;
             default:
+                filetype = FileType.NSTF;
                 break;
         }
 
@@ -73,7 +76,10 @@ public class fdsee {
                 FileType filetype = getFileType(filename);
                 
                 if(filetype != null){
-                    writer.println(file + "\t" + filetype);
+                    if(filetype == FileType.NSTF)   
+                        writer.println(docID + "\t" + filename + "\t" + "NSTF");
+                    else
+                        writer.println(docID + "\t" + filename + "\t" + "SETF" + "\t" + filetype);
                 }
 
             } else if(isDirectory){
@@ -87,7 +93,13 @@ public class fdsee {
                     FileType filetype = getFileType(f.toString());
                     
                     if(filetype != null)
-                        writer.println(f + "\t" + filetype);
+                        if(filetype == FileType.NSTF)   
+                            writer.println(docID + "\t" + f + "\t" + "NSTF");
+                        else
+                            writer.println(docID + "\t" + f + "\t" + "SETF" + "\t" + filetype);
+
+                    docID++;
+
                 }
             }
         }
@@ -149,7 +161,9 @@ public class fdsee {
                     parse = new htmlParser(ParseTokenType.TOKENDEBUG);
                     parse.closeWriter(); 
                     break;
-                    
+               
+                case "stem":
+                    break;
                 default:
                     break;
             }

@@ -31,7 +31,7 @@ java fdsee searchable filename
 java fdsee searchable directory
 ```
 
-Running one of the previous two commands will leave you with a file called fdsee_searchable.txt file
+Running one of the previous two commands will leave you with a file called fdsee_doclist.txt file
 Which has all the files that are readable in the directory or if the file is readable
 
 ### Tokenizing the readable files

@@ -22,7 +22,8 @@ class htmlParser {
     
     public List<String> wordList;
 
-    public int docID = 1;
+    public Hashtable<String, Integer> hs;
+
     public int wordID = 1;
 
     public htmlParser(ParseTokenType ttype){
@@ -34,11 +35,14 @@ class htmlParser {
             fileinfoList = new ArrayList<FileInfo>();
             
             if(ttype == ParseTokenType.TOKEN)
-                writer = new PrintWriter("fdsee_lexicon.txt", "UTF8");
+                writer = new PrintWriter("fdsee_token.txt", "UTF8");
             else 
                 writer = new PrintWriter("fdsee_tokendebug.txt", "UTF8");
 
+    
             wordList = new ArrayList<String>();
+
+            hs = new Hashtable<String, Integer>();
 
             getFileInformation();
             
@@ -50,22 +54,21 @@ class htmlParser {
                 switch(filetype){
                     case HTML:
                         attr = 0;
-                        parseHtmlFile(fname);
+                        parseHtmlFile(fname, fInfo.getDocID());
                         break;
                     case TEXT:
                         attr = 0;
-                        parseTextFile(fname);
+                        parseTextFile(fname, fInfo.getDocID());
                         break;
                     default:
                         break;
                 }
 
-                docID++;
             }
             
-        } catch(FileNotFoundException fex){
+        } catch(FileNotFoundException filenotfound){
           
-            System.err.println("Error: " + fex);
+            System.err.println("Error: " + filenotfound);
         
         } catch(Exception ex){
             
@@ -138,7 +141,18 @@ class htmlParser {
         return str;
     }
 
-    public void print(String fname, StringBuffer str, TokenStatus ts, int n){
+    public void print(String fname, int docID, StringBuffer str, TokenStatus ts, int n){
+
+        int temp = -1;
+
+        if(!hs.containsKey(str)){
+            hs.put(str.toString(), wordID);
+        }
+        else{
+            temp = wordID;
+            wordID = hs.get(str);
+        }
+
         switch(ttype){
             case TOKEN:
                 writer.println("(" + docID + "," 
@@ -154,8 +168,14 @@ class htmlParser {
                 break;
         }
 
+        if(temp == -1){
+            wordID++;
+        } else {
+            wordID = temp;
+        }
     }
-    public void parseHtmlFile(String fname){
+
+    public void parseHtmlFile(String fname, int docID){
 
         try {
             
@@ -216,18 +236,18 @@ class htmlParser {
                         if(Character.isLetterOrDigit(ch)){
                             sbWord.append(ch);
                         } else if(Character.isWhitespace(ch)){
-                            print(fname, sbWord, ts, wordOffset);
+                            print(fname, docID, sbWord, ts, wordOffset);
                             wordOffset++;
                             sbWord = new StringBuffer();
                             tt = TokenType.WORD_SPACE;
                         } else if(ch == '<'){
-                            print(fname, sbWord, ts, wordOffset);
+                            print(fname, docID, sbWord, ts, wordOffset);
                             wordOffset++;
                             sbWord = new StringBuffer();
                             tt = TokenType.OPEN_GREAT;
                         }
                         else {
-                            print(fname, sbWord, ts, wordOffset);
+                            print(fname, docID, sbWord, ts, wordOffset);
                             wordOffset++;
                             sbWord = new StringBuffer();
                             tt = TokenType.USELESS_CHAR;
@@ -360,7 +380,7 @@ class htmlParser {
         }
     }
 
-    public void parseTextFile(String fname){
+    public void parseTextFile(String fname, int docID){
 
         try {
             
@@ -385,6 +405,16 @@ class htmlParser {
                        
                         wordList.add(str);
 
+                        int temp = -1;
+
+                        if(!hs.containsKey(str)){
+                            hs.put(str, wordID);
+                        }
+                        else{
+                            temp = wordID;
+                            wordID = hs.get(str);
+                        }
+
                         switch(ttype){
 
                             case TOKEN:
@@ -402,7 +432,13 @@ class htmlParser {
                             default:
                                 break;
                         }
-                        wordID++;
+                        
+                        if(temp == -1){
+                            wordID++;
+                        } else {
+                            wordID = temp;
+                        }
+
                         wpos++;
                     }
                 }
@@ -425,6 +461,7 @@ class htmlParser {
                 filetype = FileType.HTML;
                 break;
             default:
+                filetype = FileType.NSTF;
                 break;
         }
 
@@ -445,13 +482,14 @@ class htmlParser {
             
             array = line.split("\t");
         
-            if(array.length == 2){
+            if(array.length == 4){
 
-               String filename = array[0];
-               String filetypeStr = array[1];
+                int docID = Integer.parseInt(array[0]);
+                String filename = array[1];
+                String filetypeStr = array[3];
 
-               FileType filetype = getFileType(filetypeStr);
-               fileinfoList.add(new FileInfo(filename, filetype));
+                FileType filetype = getFileType(filetypeStr);
+                fileinfoList.add(new FileInfo(filename, filetype, docID));
             
             }
 
@@ -487,4 +525,5 @@ class htmlParser {
     public void closeWriter(){
         writer.close();
     }
+
 }
