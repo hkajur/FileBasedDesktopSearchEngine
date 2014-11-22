@@ -500,7 +500,7 @@ class htmlParser {
      */
     public void getFileInformation() throws IOException{
       
-        String inputFile = "FDSEE_doclist.txt";
+        String inputFile = "fdsee_doclist.txt";
 
         FileReader fr = new FileReader(inputFile);
         BufferedReader bRead = new BufferedReader(fr);
