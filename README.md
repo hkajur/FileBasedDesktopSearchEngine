@@ -42,6 +42,8 @@ java fdsee token filename
 
 Output of this file is stored to a file named fdsee_token.txt
 
+fdsee_token.txt is considered a dump file.
+
 Currently, I have it so it runs the searchable each time even if you run the action token
 I will have to fix that for later. But for now, it will output the string to standard output
 like this: 
@@ -50,9 +52,6 @@ like this:
 (docID, wordID, wpos, attr)    
 ```
 
-Later on, I need to fix this so it will output to a file instead of standard output
-
-Just added the token debug and token working
 
 ```
 java fdsee tokendebug filename
@@ -60,8 +59,33 @@ java fdsee tokendebug filename
 
 Output of this file is stored to a file named fdsee_tokendebug.txt
 
+fdsee_tokendebug.txt is considered a dump file.
+
 I have it set so now it accept both TEXT and HTML files
 
 ```
 (docURL, wordName, wpos, attrValue)    
+```
+
+```
+java fdsee stem directory
+```
+
+Output of this file is stored to a file named fdsee_lexicon.txt and fdsee_doclist.txt
+
+
+
+```
+( wordId, wordName, stopword, stemwordID)    
+```
+
+java fdsee stopword directory
+```
+
+Output of this file is stored to a file named fdsee_stopword.txt
+
+fdsee_stopword.txt is considered a dump file.
+
+```
+(wordID, wordName, Stopword)    
 ```
