@@ -79,6 +79,8 @@ Output of this file is stored to a file named fdsee_lexicon.txt and fdsee_doclis
 ( wordId, wordName, stopword, stemwordID)    
 ```
 
+
+```
 java fdsee stopword directory
 ```
 
