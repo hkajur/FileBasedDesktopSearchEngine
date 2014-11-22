@@ -8,6 +8,9 @@
 import java.io.*;
 import java.util.*;
 
+/*
+ * htmlParser will parse through files, create tokens, and build the lexicon 
+ */
 class htmlParser {
  
     private File file;
@@ -26,6 +29,9 @@ class htmlParser {
 
     public int wordID = 1;
 
+    /*
+     * Takes a tokentype as an argument and decides which parser to call
+     */
     public htmlParser(ParseTokenType ttype){
     
         try {
@@ -77,6 +83,9 @@ class htmlParser {
         }
     }
 
+    /*
+     * 
+     */
     public String getWordByWordID(int index){
         
         String str = (String) (wordList.get(index - 1));
@@ -84,6 +93,9 @@ class htmlParser {
         return str;
     }
 
+    /*
+     * Converts token status into a numerical for printing of dumpfiles
+     */
     public int getValueOfTokenStatus(TokenStatus ts){
        
         int n = 0;
@@ -112,6 +124,9 @@ class htmlParser {
         return n;
     }
 
+    /*
+     * Identifies if a token is a title, anchor, or header tag.
+     */
     public String getTokenStatus(TokenStatus ts){
         
         String str = "";
@@ -141,6 +156,9 @@ class htmlParser {
         return str;
     }
 
+    /*
+     * Formats output to be written to a text file
+     */
     public void print(String fname, int docID, StringBuffer str, TokenStatus ts, int n){
 
         int temp = -1;
@@ -175,6 +193,9 @@ class htmlParser {
         }
     }
 
+    /*
+     * Parses html files and identifies any special cases 
+     */
     public void parseHtmlFile(String fname, int docID){
 
         try {
@@ -380,6 +401,9 @@ class htmlParser {
         }
     }
 
+    /*
+     * Parses text files and identifies any special cases 
+     */
     public void parseTextFile(String fname, int docID){
 
         try {
@@ -449,6 +473,9 @@ class htmlParser {
         }
     }
 
+    /*
+     * Takes a string argument and compares to check for filetype
+     */
     public FileType getFileType(String str){
         
         FileType filetype = null;
@@ -468,6 +495,9 @@ class htmlParser {
         return filetype;
     }
 
+    /*
+     * Parses the doclist file and stores the information into a list
+     */
     public void getFileInformation() throws IOException{
       
         String inputFile = "FDSEE_doclist.txt";
@@ -496,6 +526,9 @@ class htmlParser {
         }
     }
 
+    /*
+     * Prints file information to screen
+     */
     public void print(){
         
         for(FileInfo f: fileinfoList){
@@ -504,6 +537,9 @@ class htmlParser {
 
     }
 
+    /*
+     * Reads each line and converts characters to lowercase
+     */
     public String parse(){
 
         String line = null;
@@ -522,6 +558,9 @@ class htmlParser {
         return line;
     }
 
+    /*
+     * Closes printwriter instance
+     */
     public void closeWriter(){
         writer.close();
     }

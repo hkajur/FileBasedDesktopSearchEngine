@@ -49,7 +49,7 @@ public class fdsee {
     }
    
     /*
-     * Takes a directorty and places content files into an arraylist
+     * Takes a directory and adds content files into an arraylist
      */
     public static void listFiles(String directoryName, ArrayList<File> files) {
 
@@ -118,7 +118,7 @@ public class fdsee {
     }
 
     /*
-     * Checks if files exist
+     * Check if files exist
      */
     public static boolean fileExists(File f){
         if(f.exists())
@@ -132,6 +132,8 @@ public class fdsee {
     public static void main(String[] args){
         
         try {
+
+            //Check that the arguments are valid
 
             if(args.length == 0 || args.length == 1){
                 System.err.println("Error: Need at least two argument");
@@ -180,7 +182,7 @@ public class fdsee {
                
                 case "stem":
                     break;
-                    
+
                 default:
                     break;
             }
