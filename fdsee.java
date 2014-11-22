@@ -78,6 +78,7 @@ public class fdsee {
         BufferedReader br = new BufferedReader(new FileReader(file1));
 
         String line = null;
+        PrintWriter pw = new PrintWriter(LEXICON_OUTPUT, "UTF-8");
 
         hashWordList = new Hashtable<String, Integer>();
 
@@ -91,13 +92,15 @@ public class fdsee {
             String stemmedWord = stemming.stem(word);
 
             if(hashWordList.containsKey(stemmedWord)){
-                System.out.println(wordID + "\t" + word + "\t" + st + "\t" + hashWordList.get(stemmedWord));
+                pw.println(wordID + "\t" + word + "\t" + st + "\t" + hashWordList.get(stemmedWord));
             } else {
                 hashWordList.put(word, wordID);
-                System.out.println(wordID + "\t" + word + "\t" + st + "\t" + wordID);
+                pw.println(wordID + "\t" + word + "\t" + st + "\t" + wordID);
             }
         
         }
+
+        pw.close();
 
         br.close();
     }
