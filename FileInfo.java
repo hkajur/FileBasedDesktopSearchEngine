@@ -1,7 +1,8 @@
 /*
  * Venkata Harish Kajur 8982
  * Jonathan Lysiak 4477
- *
+ * CS-345
+ * Homework 6
  */
 
 class FileInfo {

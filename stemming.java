@@ -1,13 +1,16 @@
 /*
  * Venkata Harish Kajur 8982
  * Jonathan Lysiak 4477
- *
+ * CS-345
+ * Homework 6
  */
 
 import java.io.*;
 import java.util.*;
 
-
+/*
+ * Stems files to associate them to their root word in the lexicon
+ */
 public class stemming {
 
     public static String stem(String word){

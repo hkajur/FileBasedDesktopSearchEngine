@@ -1,7 +1,8 @@
 /*
  * Venkata Harish Kajur 8982
  * Jonathan Lysiak 4477
- *
+ * CS-345
+ * Homework 6
  */
 
 
@@ -17,6 +18,9 @@ public class fdsee {
 
     public static int docID = 1;
 
+    /*
+     * Pull files and reads their extensions and sets a filetype
+     */
     public static FileType getFileType(String filename){
         
         filename = filename.replaceFirst("[a-zA-Z0-9$/_]*.", "");
@@ -44,6 +48,9 @@ public class fdsee {
         return filetype;
     }
    
+    /*
+     * Takes a directorty and places content files into an arraylist
+     */
     public static void listFiles(String directoryName, ArrayList<File> files) {
 
         File directory = new File(directoryName);
@@ -60,6 +67,9 @@ public class fdsee {
         }
     } 
     
+    /*
+     * Checks files to determine if files are searchable 
+     */
     public static void isSearchable(String filename){
         
         File file = new File(filename);
@@ -107,12 +117,18 @@ public class fdsee {
         writer.println("END-OF-LISTING");
     }
 
+    /*
+     * Checks if files exist
+     */
     public static boolean fileExists(File f){
         if(f.exists())
             return true;
         return false;
     }
 
+    /*
+     * Main Method
+     */
     public static void main(String[] args){
         
         try {
@@ -164,6 +180,7 @@ public class fdsee {
                
                 case "stem":
                     break;
+                    
                 default:
                     break;
             }

@@ -13,7 +13,7 @@ Compilation
 Run the following command to compile the program
 
 ```
-javac fdsee.java FileInfo.java enums.java htmlParser.java
+javac fdsee.java FileInfo.java enums.java htmlParser.java stemming.java
 ```
 
 Running the program
