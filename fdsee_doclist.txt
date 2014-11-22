@@ -1,3 +1,3 @@
-1	Test3/t.html	SETF	HTML
-2	Test3/test1.txt	SETF	TEXT
+1	Test2/hello.txt	SETF	TEXT
+2	Test2/hello2.txt	SETF	TEXT
 END-OF-LISTING
