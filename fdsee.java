@@ -91,15 +91,30 @@ public class fdsee {
             String st = array1[2];
             String stemmedWord = stemming.stem(word);
 
-            if(hashWordList.containsKey(stemmedWord)){
-                pw.println(wordID + "\t" + word + "\t" + st + "\t" + hashWordList.get(stemmedWord));
-            } else {
-                hashWordList.put(stemmedWord, wordID);
-                pw.println(wordID + "\t" + word + "\t" + st + "\t" + wordID);
-            }
+            hashWordList.put(word, wordID);
         
         }
 
+        br.close();
+
+        br = new BufferedReader(new FileReader(file1));
+
+        while( (line = br.readLine()) != null){
+            
+            String[] array1 = line.split("\t");
+                
+            int wordID = Integer.parseInt(array1[0]);
+            String word = array1[1];
+            String st = array1[2];
+            String stemmedWord = stemming.stem(word);
+            
+            if(hashWordList.containsKey(stemmedWord)){
+                pw.println(wordID + "\t" + word + "\t" + st + "\t" + hashWordList.get(stemmedWord));
+            } else {
+                pw.println(wordID + "\t" + word + "\t" + st + "\t" + wordID);
+            }
+        }
+        
         pw.close();
 
         br.close();
