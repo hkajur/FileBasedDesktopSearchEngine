@@ -94,7 +94,7 @@ public class fdsee {
             if(hashWordList.containsKey(stemmedWord)){
                 pw.println(wordID + "\t" + word + "\t" + st + "\t" + hashWordList.get(stemmedWord));
             } else {
-                hashWordList.put(word, wordID);
+                hashWordList.put(stemmedWord, wordID);
                 pw.println(wordID + "\t" + word + "\t" + st + "\t" + wordID);
             }
         

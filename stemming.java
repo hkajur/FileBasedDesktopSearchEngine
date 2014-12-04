@@ -39,4 +39,14 @@ public class stemming {
         return word;
     }
 
+    public static void main(String[] args){
+
+        try {
+            String line = args[0];
+            System.out.println(stem(line));
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
 } 
