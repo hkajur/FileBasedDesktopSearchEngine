@@ -139,9 +139,7 @@ public class fdsee {
             return c;
         }
 
-        if(list[0] != list[1]){
-            array.add(list[0]);
-        }
+        array.add(list[0]);
 
         for(int i = 1; i < size; i++){
             if(list[i] != list[i-1]){
