@@ -39,7 +39,16 @@ public class fdsee {
     }
     
     public static int[] mergeLists(int[] list1, int[] list2){
-    
+  
+        if(list1 == null && list2 == null)
+            return null;
+
+        if(list1 == null)
+            return list2;
+
+        if(list2 == null)
+            return list1;
+
         int i = 0;
         int j = 0;
 
@@ -118,10 +127,11 @@ public class fdsee {
 
     public static int[] reducer(int[] list){
 
-        int size = list.length ;
-       
         if(list == null)    
             return null;
+        
+        int size = list.length ;
+       
         ArrayList<Integer> array = new ArrayList<Integer>();
       
         if(size == 1){
@@ -153,7 +163,13 @@ public class fdsee {
     }
 
     public static int[] getDocsForTerm(String term){
-        
+       
+        if(term == null)
+            return null;
+    
+        if(term.equals(""))
+            return null;
+
         File f = new File("fdsee_invindex/" + term);
 
         if(!f.exists())
