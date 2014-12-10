@@ -467,7 +467,7 @@ public class fdsee {
             }
             
             if(args.length > 4){
-                System.err.println("Error: Can't have more than two argument");
+                System.err.println("Error: Can't have more than four argument");
                 System.exit(1);
             }
 
