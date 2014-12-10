@@ -37,7 +37,7 @@ public class invert {
                 
             Collections.sort(keys);
 
-            PrintWriter voc = new PrintWriter("fdsee_vocabulary.txt", "UTF-8");
+            PrintWriter voc = new PrintWriter("fdsee_invindex/fdsee_vocabulary.txt", "UTF-8");
             
             for(String key : keys){
                 

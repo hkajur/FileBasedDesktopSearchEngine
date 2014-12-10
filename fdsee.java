@@ -563,10 +563,25 @@ public class fdsee {
                         mergeAndStopWords(new File(TOKEN_OUTPUT), new File(TOKENDEBUG_OUTPUT));
                     }
                     
-                    mergeStem(new File(STOPWORD_OUTPUT));
                     break;
 
                 case "invert":
+                    
+                    if(filename != null){
+                  
+                        writer = new PrintWriter(SEARCH_OUTPUT, "UTF-8");
+                        isSearchable(filename);
+                        writer.close();
+                    
+                        parse = new htmlParser(ParseTokenType.TOKEN);
+                        parse.closeWriter(); 
+                    
+                        parse = new htmlParser(ParseTokenType.TOKENDEBUG);
+                        parse.closeWriter(); 
+
+                        mergeAndStopWords(new File(TOKEN_OUTPUT), new File(TOKENDEBUG_OUTPUT));
+                        mergeStem(new File(STOPWORD_OUTPUT));
+                    }
                     invert.vocab(LEXICON_OUTPUT);
                     break;
 
@@ -823,6 +838,59 @@ public class fdsee {
                     break;
 
                 case "next5":
+                    
+                    if(args.length != 3){
+                        System.out.println("Error: Program requires three arguments");
+                        System.exit(0);
+                    } else {
+                        
+                        String term1 = (args[1]);
+                        String term2 = (args[2]);
+                
+                        int[] term1Docs = getDocsForTerm(term1);
+
+                        if(term1Docs == null){
+                            term1 = stemming.stem(term1);
+                            term1Docs = getDocsForTerm(term1);
+                        }
+                        
+                        int[] term2Docs = getDocsForTerm(term2);
+
+                        if(term2Docs == null){
+                            term2 = stemming.stem(term2);
+                            term2Docs = getDocsForTerm(term2);
+                        }
+                        
+                        int[] mergedList = mergeLists(term1Docs, term2Docs);
+             
+                        int[] dupOnly = findDuplicates(mergedList);
+
+                        Hashtable<Integer, String> hs = mergeTokDebug();
+             
+                        Map<Integer, Integer> map;
+
+                        if(dupOnly != null){
+                            for(int i = 0; i < dupOnly.length; i++){
+                           
+                                int t1offSet = getOffset(dupOnly[i], term1);
+                                int t2offSet = getOffset(dupOnly[i], term2);
+
+                                if((t1offSet != -1) && (t2offSet != -1)){
+                                    int diff = t2offSet - t1offSet;
+
+                                    if(diff < 0)
+                                        diff = (-1) * diff;
+
+                                    if(diff <= 5)
+                                        System.out.println(hs.get(dupOnly[i]));
+
+
+                                }
+
+                            }
+                        }
+
+                    }
 
                     break;
                 default:
@@ -878,5 +946,30 @@ public class fdsee {
 
         return array;
     }
+
+    public static int getOffset(int docID, String word) throws Exception{
+
+        File f = new File("fdsee_invindex/" + word);
+
+        BufferedReader br = new BufferedReader(new FileReader(f));
+
+        String line = null;
+
+        while( (line = br.readLine()) != null){
+            String[] arr = line.split(",");
+
+            int dID = Integer.parseInt(arr[0]);
+
+            if(dID == docID){
+                br.close();
+                return Integer.parseInt(arr[1]);
+            }
+        }
+
+        br.close();
+
+        return -1;
+    }
+
 
 }
