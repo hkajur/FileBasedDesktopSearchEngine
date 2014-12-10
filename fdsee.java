@@ -582,13 +582,17 @@ public class fdsee {
                 
                         int[] term1Docs = getDocsForTerm(term1);
 
-                        if(term1Docs == null)
-                            term1Docs = getDocsForTerm(stemming.stem(term1));
+                        if(term1Docs == null){
+                            term1 = stemming.stem(term1);
+                            term1Docs = getDocsForTerm(term1);
+                        }
                         
                         int[] term2Docs = getDocsForTerm(term2);
 
-                        if(term2Docs == null)
-                            term2Docs = getDocsForTerm(stemming.stem(term2));
+                        if(term2Docs == null){
+                            term2 = stemming.stem(term2);
+                            term2Docs = getDocsForTerm(term2);
+                        }
                         
                         int[] mergedList = mergeLists(term1Docs, term2Docs);
              
@@ -616,18 +620,24 @@ public class fdsee {
                 
                         int[] term1Docs = getDocsForTerm(term1);
 
-                        if(term1Docs == null)
-                            term1Docs = getDocsForTerm(stemming.stem(term1));
+                        if(term1Docs == null){
+                            term1 = stemming.stem(term1);
+                            term1Docs = getDocsForTerm(term1);
+                        }
                         
                         int[] term2Docs = getDocsForTerm(term2);
 
-                        if(term2Docs == null)
-                            term2Docs = getDocsForTerm(stemming.stem(term2));
+                        if(term2Docs == null){
+                            term2 = stemming.stem(term2);
+                            term2Docs = getDocsForTerm(term2);
+                        }
 
                         int[] term3Docs = getDocsForTerm(term3);
 
-                        if(term3Docs == null)
-                            term2Docs = getDocsForTerm(stemming.stem(term3));
+                        if(term3Docs == null){
+                            term3 = stemming.stem(term3);
+                            term3Docs = getDocsForTerm(term3);
+                        }
                         
                         int[] mergedList = mergeLists(term1Docs, term2Docs);
                         mergedList = mergeLists(mergedList, term3Docs);
@@ -655,13 +665,17 @@ public class fdsee {
                 
                         int[] term1Docs = getDocsForTerm(term1);
 
-                        if(term1Docs == null)
-                            term1Docs = getDocsForTerm(stemming.stem(term1));
+                        if(term1Docs == null){
+                            term1 = stemming.stem(term1);
+                            term1Docs = getDocsForTerm(term1);
+                        }
                         
                         int[] term2Docs = getDocsForTerm(term2);
 
-                        if(term2Docs == null)
-                            term2Docs = getDocsForTerm(stemming.stem(term2));
+                        if(term2Docs == null){
+                            term2 = stemming.stem(term2);
+                            term2Docs = getDocsForTerm(term2);
+                        }
                         
                         int[] mergedList = mergeLists(term1Docs, term2Docs);
              
@@ -688,18 +702,24 @@ public class fdsee {
                 
                         int[] term1Docs = getDocsForTerm(term1);
 
-                        if(term1Docs == null)
-                            term1Docs = getDocsForTerm(stemming.stem(term1));
-                        
+                        if(term1Docs == null){
+                            term1 = stemming.stem(term1);
+                            term1Docs = getDocsForTerm(term1);
+                        }
+
                         int[] term2Docs = getDocsForTerm(term2);
 
-                        if(term2Docs == null)
-                            term2Docs = getDocsForTerm(stemming.stem(term2));
+                        if(term2Docs == null){
+                            term2 = stemming.stem(term2);
+                            term2Docs = getDocsForTerm(term2);
+                        }
 
                         int[] term3Docs = getDocsForTerm(term3);
 
-                        if(term3Docs == null)
-                            term2Docs = getDocsForTerm(stemming.stem(term3));
+                        if(term3Docs == null){
+                            term3 = stemming.stem(term3);
+                            term3Docs = getDocsForTerm(term3);
+                        }
                         
                         int[] mergedList = mergeLists(term1Docs, term2Docs);
                         mergedList = mergeLists(mergedList, term3Docs);
@@ -727,13 +747,17 @@ public class fdsee {
                         Hashtable<Integer, String> hs = mergeTokDebug();
                         int[] term1Docs = getDocsForTerm(term1);
 
-                        if(term1Docs == null)
-                            term1Docs = getDocsForTerm(stemming.stem(term1));
+                        if(term1Docs == null){
+                            term1 = stemming.stem(term1);
+                            term1Docs = getDocsForTerm(term1);
+                        }
                         
                         int[] term2Docs = getDocsForTerm(term2);
 
-                        if(term2Docs == null)
+                        if(term2Docs == null){
+                            term2 = stemming.stem(term2);
                             term2Docs = getDocsForTerm(stemming.stem(term2));
+                        }
                        
                         term2Docs = mergeLists(term2Docs, docIDList);
                         
@@ -764,18 +788,24 @@ public class fdsee {
                         Hashtable<Integer, String> hs = mergeTokDebug();
                         int[] term1Docs = getDocsForTerm(term1);
 
-                        if(term1Docs == null)
-                            term1Docs = getDocsForTerm(stemming.stem(term1));
+                        if(term1Docs == null){
+                            term1 = stemming.stem(term1);
+                            term1Docs = getDocsForTerm(term1);
+                        }
                         
                         int[] term2Docs = getDocsForTerm(term2);
 
-                        if(term2Docs == null)
-                            term2Docs = getDocsForTerm(stemming.stem(term2));
+                        if(term2Docs == null){
+                            term2 = stemming.stem(term2);
+                            term2Docs = getDocsForTerm(term2);
+                        }
                         
                         int[] term3Docs = getDocsForTerm(term3);
 
-                        if(term3Docs == null)
-                            term3Docs = getDocsForTerm(stemming.stem(term3));
+                        if(term3Docs == null){
+                            term3 = stemming.stem(term3);
+                            term3Docs = getDocsForTerm(term3);
+                        }
                        
                         term3Docs = mergeLists(term3Docs, docIDList);
                         
