@@ -21,7 +21,7 @@ public class fdsee {
 
     public static PrintWriter writer;
 
-    public static int docID = 1;
+    pblic static int docID = 1;
     public static int[] docIDList;
 
     public static Hashtable<String, Integer> hashWordList;
