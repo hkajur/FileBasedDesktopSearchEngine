@@ -17,7 +17,7 @@ public class fdsee {
     public static final String STOPWORD_OUTPUT = "fdsee_stopword.txt";
     public static final String LEXICON_OUTPUT = "fdsee_lexicon.txt";
 
-    public static final String[] stopWords = {"i", "a", "about", "an", "are", "as", "at", "be", "by", "com", "en", "for", "from", "how", "in", "is", "it", "of", "on", "or", "that", "this", "to", "was", "what", "when", "where", "who", "will", "with", "www"};
+    public static final String[] stopWords = {"i", "a", "about", "an", "are", "as", "at", "be", "by", "com", "en", "for", "from", "how", "in", "is", "it", "of", "on", "or", "that", "this", "to"};
 
     public static PrintWriter writer;
 
